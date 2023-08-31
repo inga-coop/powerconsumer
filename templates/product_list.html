@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="table-responsive">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in product_list %}
+            <tr>
+                <td><img class="product-img" src="{{ product[0] }}" alt="Product Image"></td>
+                <td> <a href="/">{{ product[1] }}</a></td>
+                <td>{{ product[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination -->
+<div>
+    <ul class="pagination justify-content-center">
+        {% if prev_url %}
+        <li class="page-item">
+            <!-- Fill in url_for with 'product_list_page' and page=prev_url -->
+            <a class="page-link" href="{{ url_for('product_list_page', page=prev_url) }}">Previous</a>
+        </li>
+        {% endif %}
+        {% if next_url %}
+        <li class="page-item">
+            <!-- Fill in url_for with 'product_list_page' and page=next_url -->
+            <a class="page-link" href="{{ url_for('product_list_page', page=next_url) }}">Next</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+
+{% endblock %}
